@@ -4,7 +4,9 @@
     "description": "Jimp API Wrapper for https://violetics.pw/api/jimp",
     "main": "src/index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node src/index.js",
+        "test": "node test/index.test",
+        "prettier": "prettier -w ."
     },
     "repository": {
         "type": "git",
