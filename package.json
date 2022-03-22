@@ -1,6 +1,6 @@
 {
     "name": "@violetics/jimp",
-    "version": "0.1.0",
+    "version": "0.4.5",
     "description": "Jimp API Wrapper for https://violetics.pw/api/jimp",
     "main": "src/index.js",
     "scripts": {
