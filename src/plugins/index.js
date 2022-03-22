@@ -5,7 +5,7 @@ const { VioleticsError, request, parseOptions } = require("../utils");
 function handleParams(url, args, config, fn) {
 	let options = parseOptions(
 		{
-		    ...(config && typeof config == "object" ? config : {}),
+			...(config && typeof config == "object" ? config : {}),
 			img: fs.readFileSync(path.join(__dirname, "../../media/violetics.png")),
 		},
 		args || {}
@@ -35,8 +35,9 @@ module.exports = function (self) {
 		brightness: (image, fn) => handleParams(BASE("brightness", apikey), { img: image }, "", fn),
 		tahta: (text, fn) => handleParams(BASE("tahta", apikey), { text: text }, { text: "Violetics" }, fn),
 		blur: (image, pixel, fn) => {
-		    if (!pixel || typeof pixel == "function") throw new VioleticsError("blur() required pixel, received type " + typeof pixel);
-		    return handleParams(BASE("blur", apikey), { img: image, pixel: pixel }, { pixel: 5 }, fn);
+			if (!pixel || typeof pixel == "function")
+				throw new VioleticsError("blur() required pixel, received type " + typeof pixel);
+			return handleParams(BASE("blur", apikey), { img: image, pixel: pixel }, { pixel: 5 }, fn);
 		},
 	};
 };
