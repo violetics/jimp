@@ -1,4 +1,5 @@
-const { name, version } = require("../package.json");
+const { name: nama, version } = require("../package.json");
+const plugins = require("./plugins");
 const utils = require("./utils");
 const { VioleticsError } = utils;
 
@@ -6,17 +7,18 @@ class Violetics {
 	constructor(apikey) {
 		if (!apikey || typeof apikey != "string")
 			throw new VioleticsError("arguments 'apikey' must be typeof string and required!");
-		this.name = name;
+		this.name = nama;
 		this.version = version;
-		this.utils = utils;
-		this.plugins = require("./plugins");
 		this.apikey = apikey;
+		this.utils = utils;
+		for (var key in plugins) {
+			let index = plugins[key](this);
+			for (var plugin in index) this[plugin] = index[plugin];
+		}
 	}
 	BASE(path, apikey) {
 		return `https://violetics.pw/api/jimp/${path}?apikey=${apikey}`;
 	}
 }
-
-console.log(new Violetics("ajaja"));
 
 module.exports = Violetics;
