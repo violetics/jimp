@@ -6,11 +6,12 @@ function handleParams(url, args, config, fn) {
 	let options = parseOptions(
 		{
 			...(config && typeof config == "object" ? config : {}),
-			img: fs.readFileSync(path.join(__dirname, "../../media/violetics.png")),
+			...(/\/(tahta)/gi.test(url)
+				? {}
+				: { img: fs.readFileSync(path.join(__dirname, "../../media/violetics.png")) }),
 		},
 		args || {}
 	);
-	console.log(arguments);
 	if (fn && typeof fn == "function") {
 		return request(url, options)
 			.then((data) => fn(null, data))

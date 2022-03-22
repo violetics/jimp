@@ -1,6 +1,6 @@
 ## Violetics API Jimp
 
-> **Jimp API Wrapper for https://violetics.pw/api/jimp_**
+> **_Jimp API Wrapper for https://violetics.pw/api/jimp_**
 
 ```diff
 @@ Created on 22-03-22 | Violetics @@
