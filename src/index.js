@@ -11,9 +11,9 @@ class Violetics {
 		this.version = version;
 		this.apikey = apikey;
 		this.utils = utils;
-		for (var key in plugins) {
-			let index = plugins[key](this);
-			for (var plugin in index) this[plugin] = index[plugin];
+		this.plugins = plugins(this);
+		for (var key in this.plugins) {
+			this[key] = this.plugins[key];
 		}
 	}
 	BASE(path, apikey) {

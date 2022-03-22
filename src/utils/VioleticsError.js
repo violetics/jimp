@@ -4,7 +4,6 @@ module.exports = class VioleticsError extends TypeError {
 	constructor(message, type, ...args) {
 		super(message, type, ...args);
 		this.name = type || "TypeError";
-		let atKey = /at (.+) /gi.exec(this.stack)[1];
 		this.message = util.format(message);
 		this.error = {
 			name: this.name,
