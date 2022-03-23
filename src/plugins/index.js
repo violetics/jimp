@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const util = require("util");
 const { VioleticsError, request, parseOptions } = require("../utils");
 
 function handleParams(url, args, config, fn) {
@@ -39,6 +40,23 @@ module.exports = function (self) {
 			if (!pixel || typeof pixel == "function")
 				throw new VioleticsError("blur() required pixel, received type " + typeof pixel);
 			return handleParams(BASE("blur", apikey), { img: image, pixel: pixel }, { pixel: 5 }, fn);
+		},
+		resize: (image, width, height, fn) => {
+		    if (!width || typeof width == "function") throw new VioleticsError("resize() required width, received value " + util.format(width));
+		    if (!height || typeof height == "function") throw new VioleticsError("resize() required height, received value " + util.format(height));
+		    return handleParams(BASE("resize", apikey), { img: image, width: width, height: height }, { width: 50, height: 50 }, fn);
+		},
+		posterize: (image, level, fn) => {
+		    if (!level || typeof level == "function") throw new VioleticsError("posterize() required level, received type " + typeof level);
+		    return handleParams(BASE("posterize", apikey), { img: image, level: level }, { level: 5 }, fn);
+		},
+		pixelate: (image, level, fn) => {
+		    if (!level || typeof level == "function") throw new VioleticsError("pixelate() required level, received type " + typeof level);
+		    return handleParams(BASE("pixelate", apikey), { img: image, level: level }, { level: 20 }, fn);
+		},
+		rotate: (image, level, fn) => {
+		    if (!level || typeof level == "function") throw new VioleticsError("rotate() required level, received type " + typeof level);
+		    return handleParams(BASE("rotate", apikey), { img: image, level: level }, { level: 20 }, fn);
 		},
 	};
 };
